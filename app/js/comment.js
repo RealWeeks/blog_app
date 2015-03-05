@@ -23,12 +23,18 @@ App.getPosts = function(){
 };
 
 App.indexPosts = function(posts){
+
   posts.forEach(App.renderPost);
 };
 
 App.renderPost = function(currentVal, index, array){
 // trace(currentVal, index);
-  $('section.main-content').append('<article class="post">' + '<h1 class="post-title">' + currentVal.title + '</h1>' + '<p class="post-body">' + currentVal.body + '</p>' + '<small class="post-author">' + currentVal.author + '</small>' + '<p>' + currentVal.comments.length + '</p>' + '</article>');
+// debugger;
+if (currentVal.comments[0].body) {
+  $('section.main-content').append('<article class="post">' + '<h1 class="post-title">' + currentVal.title + '</h1>' + '<p class="post-body">' + currentVal.comments[0].body + '</p>' + '<small class="post-author">' + currentVal.comments[0].author + '</small>' + '</article>');
+} else {
+  $('section.main-content').append('<article class="post">' + '<h1 class="post-title">' + 'NO FUCKING COMMENTS' + '</h1>');
+}
 };
 
 App.submitPost = function(event){
